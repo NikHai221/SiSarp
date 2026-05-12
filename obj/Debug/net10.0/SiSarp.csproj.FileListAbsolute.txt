@@ -1,0 +1,15 @@
+C:\Users\NIko\Desktop\SkolDom\DonetCsharp\SiSarp\bin\Debug\net10.0\SiSarp.exe
+C:\Users\NIko\Desktop\SkolDom\DonetCsharp\SiSarp\bin\Debug\net10.0\SiSarp.deps.json
+C:\Users\NIko\Desktop\SkolDom\DonetCsharp\SiSarp\bin\Debug\net10.0\SiSarp.runtimeconfig.json
+C:\Users\NIko\Desktop\SkolDom\DonetCsharp\SiSarp\bin\Debug\net10.0\SiSarp.dll
+C:\Users\NIko\Desktop\SkolDom\DonetCsharp\SiSarp\bin\Debug\net10.0\SiSarp.pdb
+C:\Users\NIko\Desktop\SkolDom\DonetCsharp\SiSarp\obj\Debug\net10.0\SiSarp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\NIko\Desktop\SkolDom\DonetCsharp\SiSarp\obj\Debug\net10.0\SiSarp.AssemblyInfoInputs.cache
+C:\Users\NIko\Desktop\SkolDom\DonetCsharp\SiSarp\obj\Debug\net10.0\SiSarp.AssemblyInfo.cs
+C:\Users\NIko\Desktop\SkolDom\DonetCsharp\SiSarp\obj\Debug\net10.0\SiSarp.csproj.CoreCompileInputs.cache
+C:\Users\NIko\Desktop\SkolDom\DonetCsharp\SiSarp\obj\Debug\net10.0\SiSarp.sourcelink.json
+C:\Users\NIko\Desktop\SkolDom\DonetCsharp\SiSarp\obj\Debug\net10.0\SiSarp.dll
+C:\Users\NIko\Desktop\SkolDom\DonetCsharp\SiSarp\obj\Debug\net10.0\refint\SiSarp.dll
+C:\Users\NIko\Desktop\SkolDom\DonetCsharp\SiSarp\obj\Debug\net10.0\SiSarp.pdb
+C:\Users\NIko\Desktop\SkolDom\DonetCsharp\SiSarp\obj\Debug\net10.0\SiSarp.genruntimeconfig.cache
+C:\Users\NIko\Desktop\SkolDom\DonetCsharp\SiSarp\obj\Debug\net10.0\ref\SiSarp.dll
