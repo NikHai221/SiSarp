@@ -7,14 +7,30 @@
   "targets": {
     ".NETCoreApp,Version=v10.0": {
       "SiSarp/1.0.0": {
+        "dependencies": {
+          "ChessCore": "1.0.0"
+        },
         "runtime": {
           "SiSarp.dll": {}
+        }
+      },
+      "ChessCore/1.0.0": {
+        "runtime": {
+          "ChessCore.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }
   },
   "libraries": {
     "SiSarp/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ChessCore/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

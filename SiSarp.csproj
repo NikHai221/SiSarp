@@ -1,14 +1,26 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net10.0-windows</TargetFramework> <Nullable>enable</Nullable>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework> 
+    <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UseWPF>true</UseWPF> </PropertyGroup>
+    <UseWPF>true</UseWPF> 
+  </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Obrazky\**\*.png" />
-    <Resource Include="Obrazky\**\*.png" />
+    <Compile Remove="ChessCore\**" />
+    <EmbeddedResource Remove="ChessCore\**" />
+    <None Remove="ChessCore\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="gui\Obrazky\**\*.png" />
+    <Resource Include="gui\Obrazky\**\*.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="ChessCore\ChessCore.csproj" />
   </ItemGroup>
 
 </Project>

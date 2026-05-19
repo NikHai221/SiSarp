@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
 
 namespace com.example
@@ -9,11 +10,13 @@ namespace com.example
         [STAThread]
         public static void Main(string[] args)
         {
-            // Inicializácia a spustenie hlavného cyklu WPF aplikácie
-            Application app = new Application();
             
-            // Otvorenie úvodného okna (StartMenu)
-            app.Run(new StartMenu());
+            
+            
+            // Spustenie CLI verzie
+            CliHra cliHra = new CliHra();
+            cliHra.Spusti();
+            
         }
     }
 }

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SiSarp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2b2cfbb26c817a6c3e5a0281b7dab36882d1379a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+04b63162ba6859b47576210f4afc674a2b21619f")]
 [assembly: System.Reflection.AssemblyProductAttribute("SiSarp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SiSarp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
