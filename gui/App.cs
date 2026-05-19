@@ -16,6 +16,11 @@ namespace com.example
         private Canvas koren = null!;
         private int[]? vybranaPozicia;
 
+        // DEFINÍCIA FARIEB PRIAMO V TRIEDE (nahrádza starú triedu Nastavenia)
+        // Použité sú príjemné klasické šachové odtiene (krémová a hnedá)
+        private readonly Brush svetlaFarba = new SolidColorBrush(Color.FromRgb(240, 217, 181)); 
+        private readonly Brush tmavaFarba = new SolidColorBrush(Color.FromRgb(181, 136, 99));
+
         public MainWindow()
         {
             Start();
@@ -99,14 +104,14 @@ namespace com.example
                     // OTOČENIE Y SÚRADNICE: Logický riadok 0 bude nakreslený dole
                     Canvas.SetTop(policko, (7 - riadok) * velkostPolicka);
 
-                    // Zároveň som upravil farby, aby A1 (vľavo dole) bolo tmavé políčko ako v reálnom šachu
+                    // POUŽITIE LOKÁLNYCH PREMENNÝCH PRE FARBU
                     if ((riadok + stlpec) % 2 != 0) 
                     {
-                        policko.Fill = Nastavenia.getSvetlaFarba();
+                        policko.Fill = this.svetlaFarba;
                     }
                     else
                     {
-                        policko.Fill = Nastavenia.getTmavaFarba();
+                        policko.Fill = this.tmavaFarba;
                     }
 
                     this.koren.Children.Add(policko);

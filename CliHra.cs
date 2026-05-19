@@ -14,7 +14,6 @@ namespace com.example
             this.plocha = new Plocha();
             this.hraBezi = true;
 
-            // Nastavenie callbacku, ktorý sa zavolá pri konci hry
             this.plocha.setCallbackVysledku(sprava => {
                 Console.WriteLine("\n=================================");
                 Console.WriteLine($" KONIEC HRY: {sprava}");
@@ -25,58 +24,85 @@ namespace com.example
 
         public void Spusti()
         {
-            // TOTO JE DÔLEŽITÉ: Zapne v termináli podporu pre UTF-8, inak uvidíš otázniky
             Console.OutputEncoding = Encoding.UTF8;
 
             Console.WriteLine("Vitajte v CLI verzii Šachu!");
-            Console.WriteLine("Zadávajte ťahy v štandardnom šachovom formáte (napríklad 'e2 e4').");
-            Console.WriteLine("Kedykoľvek počas hry môžete napísať 'gui' pre prechod do grafického režimu.");
-            Console.WriteLine("Pre ukončenie napíšte 'exit'.\n");
+            Console.WriteLine("Pre nápovedu kedykoľvek napíšte 'help'.\n");
 
             while (this.hraBezi)
             {
                 VykresliPlochu();
-                Console.Write("Zadaj svoj ťah (napr. a2 a4 alebo 'gui'/'exit'): ");
-                string vstup = Console.ReadLine();
+                Console.Write("Zadaj svoj ťah (napr. a2 a4) alebo argument (--help): ");
+                string? vstup = Console.ReadLine();
 
                 if (string.IsNullOrWhiteSpace(vstup)) continue;
                 
                 string vycistenyVstup = vstup.Trim().ToLower();
-                if (vycistenyVstup == "exit") break;
+                string[] prikazy = vycistenyVstup.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                string hlavnyPrikaz = prikazy[0];
 
-                // CHYTENIE PRÍKAZU PRE PRECHOD DO GUI POČAS HRY
-                if (vycistenyVstup == "gui")
+                // 1. UKONČENIE HRY
+                if (hlavnyPrikaz == "exit") break;
+
+                // 2. NÁPOVEDA
+                if (hlavnyPrikaz == "help" || hlavnyPrikaz == "--help")
+                {
+                    VypisHelp();
+                    continue;
+                }
+
+                // 3. ZMENA FARBY POZADIA POČAS HRY
+                if (hlavnyPrikaz == "bgcolor" || hlavnyPrikaz == "--bgcolor")
+                {
+                    if (prikazy.Length > 1)
+                    {
+                        NastavFarbuPozadia(prikazy[1]);
+                    }
+                    else
+                    {
+                        Console.WriteLine("\n[!] Použitie: bgcolor <farba> (napr. bgcolor DarkBlue)");
+                    }
+                    continue;
+                }
+
+                // 4. VYPÍSANIE PRAVIDIEL HRY (Opravené)
+                if (hlavnyPrikaz == "gamerules" || hlavnyPrikaz == "--gamerules")
+                {
+                    VypisPravidla();
+                    continue;
+                }
+
+                // 5. CHYTENIE PRÍKAZU PRE PRECHOD DO GUI POČAS HRY
+                if (hlavnyPrikaz == "gui" || hlavnyPrikaz == "--gui")
                 {
                     Console.WriteLine("\n[i] Otváram grafické rozhranie (WPF)...");
 
-                    // Inicializácia WPF Application prostredia na pozadí, ak ešte neexistuje
                     if (System.Windows.Application.Current == null)
                     {
                         new System.Windows.Application { ShutdownMode = System.Windows.ShutdownMode.OnExplicitShutdown };
                     }
 
-                    // Vytvorenie grafického okna s našou AKTUÁLNOU rozohranou plochou
                     var okno = new MainWindow(this.plocha);
 
-                    // Prepíšeme callback tak, aby po výhre/prehre v GUI správne zareagovalo CLI aj WPF súčasne
                     this.plocha.setCallbackVysledku(sprava => {
                         this.hraBezi = false;
                         Console.WriteLine($"\n=================================");
                         Console.WriteLine($" KONIEC HRY: {sprava}");
                         Console.WriteLine("=================================\n");
                         
-                        System.Windows.Application.Current.Dispatcher.Invoke(() => {
-                            System.Windows.MessageBox.Show(sprava, "Koniec hry", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Information);
-                        });
+                        var app = System.Windows.Application.Current;
+                        if (app != null)
+                        {
+                            app.Dispatcher.Invoke(() => {
+                                System.Windows.MessageBox.Show(sprava, "Koniec hry", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Information);
+                            });
+                        }
                     });
 
-                    // Zobrazenie okna (zablokuje toto CLI vlákno, kým okno nezavrieš)
                     okno.ShowDialog();
 
-                    // Po zatvorení okna skontrolujeme, či hra neskončila v GUI
                     if (!this.hraBezi) break;
 
-                    // Ak hra pokračuje, vrátime späť čistý CLI callback pre konzolu
                     this.plocha.setCallbackVysledku(sprava => {
                         Console.WriteLine("\n=================================");
                         Console.WriteLine($" KONIEC HRY: {sprava}");
@@ -88,21 +114,69 @@ namespace com.example
                     continue;
                 }
 
-                // Parser ťahu
+                // 6. PARSER ŤAHU
                 string[] casti = vstup.Split(new[] { ' ', '-', ',' }, StringSplitOptions.RemoveEmptyEntries);
 
                 if (casti.Length == 2 && 
                     SkusRozparsovatPoziciu(casti[0], out int r1, out int s1) && 
                     SkusRozparsovatPoziciu(casti[1], out int r2, out int s2))
                 {
-                    // Vykonanie ťahu pomocou logiky
                     this.plocha.setFigurka(r1, s1, r2, s2);
                 }
                 else
                 {
-                    Console.WriteLine("\n[!] Neplatný formát. Použite 'e2 e4' alebo príkaz 'gui'.");
+                    Console.WriteLine("\n[!] Neplatný formát. Použite 'e2 e4' alebo 'help'.");
                 }
             }
+        }
+
+        private void NastavFarbuPozadia(string nazovFarby)
+        {
+            if (Enum.TryParse(nazovFarby, true, out ConsoleColor farba))
+            {
+                Console.BackgroundColor = farba;
+                Console.Clear(); 
+                Console.WriteLine($"\n[i] Farba pozadia úspešne zmenená na: {farba}");
+            }
+            else
+            {
+                Console.WriteLine($"\n[!] Neznáma farba: '{nazovFarby}'. Skúste napr. Blue, DarkRed, Black.");
+            }
+        }
+
+        // NOVÁ METÓDA PRE VYPÍSANIE PRAVIDIEL
+        private void VypisPravidla()
+        {
+            Console.WriteLine("\n=== AKO FUNGUJE HRA ===");
+            Console.WriteLine("Cieľom hry je dať mat súperovmu kráľovi.");
+            Console.WriteLine("Hráči sa striedajú v ťahoch, biely začína ako prvý.");
+            Console.WriteLine("\nZadávanie ťahov v CLI:");
+            Console.WriteLine("Ťahy sa zadávajú pomocou súradníc šachovnice (napríklad 'e2 e4').");
+            Console.WriteLine("Prvá časť ('e2') je pozícia figúrky, ktorou chcete pohnúť.");
+            Console.WriteLine("Druhá časť ('e4') je cieľové políčko, kam chcete figúrku presunúť.");
+            Console.WriteLine("\nŠpeciálne funkcie:");
+            Console.WriteLine("Hru môžete kedykoľvek presunúť do grafického okna príkazom 'gui'.");
+            Console.WriteLine("=======================\n");
+            Console.WriteLine("Stlačte Enter pre pokračovanie...");
+            Console.ReadLine(); // Počká, kým si to používateľ prečíta
+        }
+
+        private void VypisHelp()
+        {
+            Console.WriteLine("\n=== ŠACH - NÁPOVEDA ===");
+            Console.WriteLine("Štandardné ťahy:");
+            Console.WriteLine("  Zadávajte v tvare: e2 e4\n");
+            
+            Console.WriteLine("Príkazy počas hry:");
+            Console.WriteLine("  help              Zobrazí túto nápovedu.");
+            Console.WriteLine("  bgcolor <farba>   Zmení farbu pozadia (napr. 'bgcolor Blue').");
+            Console.WriteLine("     FARBY NA VYBER: Black, White, Gray, Blue, Green, Cyan, Red, Yellow, Magenta, DarkBlue, DarkGreen, DarkCyan, DarkRed, DarkYellow, DarkMagenta.");
+            Console.WriteLine("  gamerules         Vysvetlí pravidlá a princíp fungovania hry.");
+            Console.WriteLine("  gui               Prepne aktuálne rozohranú hru do grafického režimu (WPF).");
+            Console.WriteLine("  exit              Ukončí prebiehajúcu hru a vypne program.");
+            Console.WriteLine("=======================\n");
+            Console.WriteLine("Stlačte Enter pre pokračovanie... ");
+            Console.ReadLine();
         }
 
         private bool SkusRozparsovatPoziciu(string cast, out int riadok, out int stlpec)
@@ -115,7 +189,7 @@ namespace com.example
             if (slp >= 'a' && slp <= 'h' && rdk >= '1' && rdk <= '8')
             {
                 stlpec = slp - 'a'; 
-                riadok = rdk - '1'; // '1' na index 0, '2' na index 1, atď.
+                riadok = rdk - '1'; 
                 return true;
             }
             return false;
@@ -126,10 +200,8 @@ namespace com.example
             Console.WriteLine("\n    a b c d e f g h");
             Console.WriteLine("  -------------------");
             
-            // Slučka ide od 7 (Rank 8, Čierny) dole po 0 (Rank 1, Biely)
             for (int i = 7; i >= 0; i--)
             {
-                // Číslo riadku na začiatku
                 Console.Write((i + 1) + " | "); 
                 
                 for (int j = 0; j < 8; j++)
@@ -137,15 +209,13 @@ namespace com.example
                     Figurka f = this.plocha.getFigurka(i, j);
                     if (f == null)
                     {
-                        // Vykreslenie šachovnicového vzoru pre prázdne políčka
-                        // (i + j) % 2 == 0 nám zaručí, že políčko a1 (0,0) bude tmavé
                         if ((i + j) % 2 == 0)
                         {
-                            Console.Write("□ "); // Tmavé políčko
+                            Console.Write("□ "); 
                         }
                         else
                         {
-                            Console.Write("■ "); // Svetlé políčko
+                            Console.Write("■ "); 
                         }
                     }
                     else
@@ -154,7 +224,6 @@ namespace com.example
                         Console.Write(znak + " ");
                     }
                 }
-                // Číslo riadku na konci
                 Console.WriteLine("| " + (i + 1));
             }
             Console.WriteLine("  -------------------");
@@ -175,7 +244,7 @@ namespace com.example
                     case TypFigurky.PESIAK: return '♟';
                 }
             }
-            else // CIERNA
+            else 
             {
                 switch (f.getTyp())
                 {

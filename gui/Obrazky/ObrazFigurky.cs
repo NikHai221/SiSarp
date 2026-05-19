@@ -5,9 +5,11 @@ namespace com.example.Obrazky
 {
     public class ObrazFigurky
     {
-        private Figurka figurka; // Figurka, ktorej obrazok sa ma zobrazit
-        private int cislo; // Cislo figurky
-        private string obrazok; // Nazov obrazku figurky
+        private Figurka figurka; 
+        private int cislo; 
+        
+        // OPRAVA TU: Priradili sme predvolenú hodnotu "", aby kompilátor nenadával na null
+        private string obrazok = ""; 
 
         /// <summary>
         /// Konštruktor vytvára inštanciu triedy ObrazFigurky.
