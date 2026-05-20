@@ -16,8 +16,7 @@ namespace com.example
         private Canvas koren = null!;
         private int[]? vybranaPozicia;
 
-        // DEFINÍCIA FARIEB PRIAMO V TRIEDE (nahrádza starú triedu Nastavenia)
-        // Použité sú príjemné klasické šachové odtiene (krémová a hnedá)
+        
         private readonly Brush svetlaFarba = new SolidColorBrush(Color.FromRgb(240, 217, 181)); 
         private readonly Brush tmavaFarba = new SolidColorBrush(Color.FromRgb(181, 136, 99));
 
@@ -26,7 +25,6 @@ namespace com.example
             Start();
         }
 
-        // KONŠTRUKTOR PRE PRECHOD Z CLI KEDYKOĽVEK POČAS HRY
         public MainWindow(Plocha existujucaPlocha)
         {
             this.plocha = existujucaPlocha; 
@@ -101,10 +99,8 @@ namespace com.example
                     policko.Height = velkostPolicka;
                     
                     Canvas.SetLeft(policko, stlpec * velkostPolicka);
-                    // OTOČENIE Y SÚRADNICE: Logický riadok 0 bude nakreslený dole
                     Canvas.SetTop(policko, (7 - riadok) * velkostPolicka);
 
-                    // POUŽITIE LOKÁLNYCH PREMENNÝCH PRE FARBU
                     if ((riadok + stlpec) % 2 != 0) 
                     {
                         policko.Fill = this.svetlaFarba;
@@ -137,7 +133,6 @@ namespace com.example
 
                     try
                     {
-                        // OPRAVENÁ CESTA NA gui/Obrazky
                         string uriCesta = $"pack://application:,,,/gui/Obrazky/{nazovSuboru}";
                         BitmapImage bitmapa = new BitmapImage(new Uri(uriCesta, UriKind.Absolute));
 
@@ -147,7 +142,6 @@ namespace com.example
                         pohladObrazu.Height = 50;
 
                         Canvas.SetLeft(pohladObrazu, j * 50);
-                        // OTOČENIE Y SÚRADNICE PRE FIGÚRKY
                         Canvas.SetTop(pohladObrazu, (7 - i) * 50);
 
                         this.koren.Children.Add(pohladObrazu);
@@ -164,7 +158,6 @@ namespace com.example
         {
             Point poziciaMysi = eventArgs.GetPosition(this.koren);
             int x = (int)(poziciaMysi.X / 50); 
-            // OTOČENIE KLIKNUTIA MYŠOU: Ak klikneme úplne dole, pre logiku to bude riadok 0
             int y = 7 - (int)(poziciaMysi.Y / 50); 
             return new int[] { x, y }; 
         }

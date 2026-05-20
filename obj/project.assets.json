@@ -27,29 +27,32 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\NIko\\.nuget\\packages\\": {}
+    "C:\\Users\\Arnold\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\NIko\\Desktop\\SkolDom\\DonetCsharp\\SiSarp\\SiSarp.csproj",
+      "projectUniqueName": "C:\\Users\\Arnold\\Desktop\\FRI\\2rocnik\\semester4\\denetsisarp\\semestrl\\SiSarp\\SiSarp.csproj",
       "projectName": "SiSarp",
-      "projectPath": "C:\\Users\\NIko\\Desktop\\SkolDom\\DonetCsharp\\SiSarp\\SiSarp.csproj",
-      "packagesPath": "C:\\Users\\NIko\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\NIko\\Desktop\\SkolDom\\DonetCsharp\\SiSarp\\obj\\",
+      "projectPath": "C:\\Users\\Arnold\\Desktop\\FRI\\2rocnik\\semester4\\denetsisarp\\semestrl\\SiSarp\\SiSarp.csproj",
+      "packagesPath": "C:\\Users\\Arnold\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Arnold\\Desktop\\FRI\\2rocnik\\semester4\\denetsisarp\\semestrl\\SiSarp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\NIko\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Arnold\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net10.0-windows"
       ],
+      "sources": {
+        "https://api.nuget.org/v3/index.json": {}
+      },
       "frameworks": {
         "net10.0-windows7.0": {
           "targetAlias": "net10.0-windows",
           "projectReferences": {
-            "C:\\Users\\NIko\\Desktop\\SkolDom\\DonetCsharp\\SiSarp\\ChessCore\\ChessCore.csproj": {
-              "projectPath": "C:\\Users\\NIko\\Desktop\\SkolDom\\DonetCsharp\\SiSarp\\ChessCore\\ChessCore.csproj"
+            "C:\\Users\\Arnold\\Desktop\\FRI\\2rocnik\\semester4\\denetsisarp\\semestrl\\SiSarp\\ChessCore\\ChessCore.csproj": {
+              "projectPath": "C:\\Users\\Arnold\\Desktop\\FRI\\2rocnik\\semester4\\denetsisarp\\semestrl\\SiSarp\\ChessCore\\ChessCore.csproj"
             }
           }
         }
@@ -64,7 +67,7 @@
         "auditLevel": "low",
         "auditMode": "all"
       },
-      "SdkAnalysisLevel": "10.0.200"
+      "SdkAnalysisLevel": "10.0.100"
     },
     "frameworks": {
       "net10.0-windows7.0": {
@@ -88,7 +91,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.203/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.103/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.CSharp": "(,4.7.32767]",
           "Microsoft.VisualBasic": "(,10.4.32767]",

@@ -4,11 +4,11 @@ namespace com.example.Logika
 {
     public abstract class Figurka
     {
-        private TypFigurky typ; //Typ figúrky 
-        private Strana strana; //Strana, ku ktorej figúrka patrí (napríklad biela alebo čierna).
-        private int x; //Aktuálna pozícia figúrky na osi x (stĺpec).
-        private int y; //Aktuálna pozícia figúrky na osi y (riadok).
-        private bool zmena = false; //Indikátor, či bola figúrka už presunutá.
+        private TypFigurky typ; 
+        private Strana strana; 
+        private int x; 
+        private int y; 
+        private bool zmena = false; 
 
         /// <summary>
         /// Konštruktor na vytvorenie figúrky so špecifikovaným typom a počiatočnou pozíciou.
@@ -55,12 +55,11 @@ namespace com.example.Logika
         /// </summary>
         public virtual bool preskakujeFigurky(int novyX, int novyY, Plocha p)
         {
-            // Kontrola, či ide vôbec o priamy smer (horizontálne, vertikálne alebo presne diagonálne)
+            
             int absX = Math.Abs(novyX - this.getX());
             int absY = Math.Abs(novyY - this.getY());
             
-            // Ak to nie je ani rovný, ani presne diagonálny ťah (napríklad ťah v tvare L), 
-            // nemá zmysel kontrolovať preskakovanie. 
+            
             if (absX != 0 && absY != 0 && absX != absY)
             {
                 return false; 
@@ -72,10 +71,10 @@ namespace com.example.Logika
             int i = this.getX() + deltaX;
             int j = this.getY() + deltaY;
 
-            // Cyklus pôjde po políčkach, kým nedosiahne cieľovú destináciu
+            
             while (i != novyX || j != novyY)
             {
-                // Poistka proti vybehnutiu mimo hracej plochy (keby sa niečo pokazilo)
+                
                 if (i < 0 || i > 7 || j < 0 || j > 7) 
                 {
                     break;
@@ -83,7 +82,7 @@ namespace com.example.Logika
 
                 if (p.getFigurka(i, j) != null)
                 {
-                    return true; // Našli sme figúrku, ktorá stojí v ceste
+                    return true; 
                 }
                 
                 i += deltaX;

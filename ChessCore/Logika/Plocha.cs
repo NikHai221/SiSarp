@@ -4,10 +4,10 @@ namespace com.example.Logika
 {
     public class Plocha
     {
-        private Figurka[,] plocha; // Dvojrozmerné pole, ktoré reprezentuje šachovnicu a jej figúrky
-        private Strana aktualnaStrana; // Označuje, ktorá strana je na ťahu
-        private bool hraSkoncila; // Indikátor, či hra skončila
-        private Action<string> callbackVysledku; // callback pre GUI, ktorý sa zavolá pri zobrazení výsledku hry
+        private Figurka[,] plocha; 
+        private Strana aktualnaStrana; 
+        private bool hraSkoncila; 
+        private Action<string> callbackVysledku; 
 
         public Plocha()
         {
@@ -16,7 +16,6 @@ namespace com.example.Logika
             this.callbackVysledku = s => { };
             this.plocha = new Figurka[8, 8];
 
-            // Inicializácia všetkých polí šachovnice na null
             for (int i = 0; i < 8; i++)
             {
                 for (int j = 0; j < 8; j++)
@@ -25,7 +24,6 @@ namespace com.example.Logika
                 }
             }
 
-            // Inicializácia bielych figúrok
             this.plocha[0, 0] = new Veza(0, 0, Strana.BIELA);
             this.plocha[0, 1] = new Jazdec(0, 1, Strana.BIELA);
             this.plocha[0, 2] = new Strelec(0, 2, Strana.BIELA);
@@ -40,7 +38,6 @@ namespace com.example.Logika
                 this.plocha[1, i] = new Pesiak(1, i, Strana.BIELA);
             }
 
-            // Inicializácia čiernych figúrok
             this.plocha[7, 0] = new Veza(7, 0, Strana.CIERNA);
             this.plocha[7, 1] = new Jazdec(7, 1, Strana.CIERNA);
             this.plocha[7, 2] = new Strelec(7, 2, Strana.CIERNA);
@@ -68,25 +65,21 @@ namespace com.example.Logika
                 return;
             }
 
-            // 1. Ochrana pred kliknutím úplne mimo hracej plochy
             if (x < 0 || x > 7 || y < 0 || y > 7 || novyX < 0 || novyX > 7 || novyY < 0 || novyY > 7)
             {
                 return;
             }
 
-            // 2. Ochrana pred NullReferenceException (ak klikneme na prázdne miesto)
             if (this.plocha[x, y] == null)
             {
                 return; 
             }
 
-            // 3. Kontrola, či je na ťahu správny hráč
             if (!this.poradie(x, y))
             {
                 return;
             }
 
-            // --- Rošáda ---
             if (x == 0 && y == 3 && novyX == 0 && (novyY == 0 || novyY == 7))
             {
                 if (this.getFigurka(x, y).getTyp() == TypFigurky.KRAL && !(this.getFigurka(x, y).getZmena()))
@@ -110,21 +103,19 @@ namespace com.example.Logika
                 }
             }
 
-            // 4. Overenie pravidiel (kolízia vlastných, preskakovanie, zlý smer)
             if (this.plocha[novyX, novyY] != null && this.plocha[x, y].getStrana() == this.plocha[novyX, novyY].getStrana())
             {
-                return; // Nemôžeš vyhodiť vlastnú figúrku
+                return; 
             }
             else if (this.getFigurka(x, y).preskakujeFigurky(novyX, novyY, this))
             {
-                return; // Figurka nemoze preskakovat ine
+                return; 
             }
             else if (!this.plocha[x, y].validnyPohyb(novyX, novyY, this))
             {
-                return; // Neplatny tah podla pravidiel figurky
+                return; 
             }
 
-            // --- Vykonanie samotného ťahu ---
             if (this.getFigurka(x, y).getTyp() == TypFigurky.PESIAK)
             {
                 if (this.plocha[x, y].getStrana() == Strana.BIELA && novyX == 7)
@@ -147,7 +138,7 @@ namespace com.example.Logika
                 this.plocha[novyX, novyY].setPozicia(novyX, novyY);
             }
 
-            this.plocha[x, y] = null; // Zmazanie figúrky zo starej pozície
+            this.plocha[x, y] = null; 
 
             this.zmenPoradie();
             this.kontrolaVyhry();

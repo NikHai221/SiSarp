@@ -13,7 +13,6 @@ namespace com.example
         {
             this.plocha = new Plocha();
             this.hraBezi = true;
-
             this.plocha.setCallbackVysledku(sprava => {
                 Console.WriteLine("\n=================================");
                 Console.WriteLine($" KONIEC HRY: {sprava}");
@@ -41,17 +40,14 @@ namespace com.example
                 string[] prikazy = vycistenyVstup.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
                 string hlavnyPrikaz = prikazy[0];
 
-                // 1. UKONČENIE HRY
                 if (hlavnyPrikaz == "exit") break;
 
-                // 2. NÁPOVEDA
                 if (hlavnyPrikaz == "help" || hlavnyPrikaz == "--help")
                 {
                     VypisHelp();
                     continue;
                 }
 
-                // 3. ZMENA FARBY POZADIA POČAS HRY
                 if (hlavnyPrikaz == "bgcolor" || hlavnyPrikaz == "--bgcolor")
                 {
                     if (prikazy.Length > 1)
@@ -65,14 +61,12 @@ namespace com.example
                     continue;
                 }
 
-                // 4. VYPÍSANIE PRAVIDIEL HRY (Opravené)
                 if (hlavnyPrikaz == "gamerules" || hlavnyPrikaz == "--gamerules")
                 {
                     VypisPravidla();
                     continue;
                 }
 
-                // 5. CHYTENIE PRÍKAZU PRE PRECHOD DO GUI POČAS HRY
                 if (hlavnyPrikaz == "gui" || hlavnyPrikaz == "--gui")
                 {
                     Console.WriteLine("\n[i] Otváram grafické rozhranie (WPF)...");
@@ -114,7 +108,6 @@ namespace com.example
                     continue;
                 }
 
-                // 6. PARSER ŤAHU
                 string[] casti = vstup.Split(new[] { ' ', '-', ',' }, StringSplitOptions.RemoveEmptyEntries);
 
                 if (casti.Length == 2 && 
@@ -144,7 +137,6 @@ namespace com.example
             }
         }
 
-        // NOVÁ METÓDA PRE VYPÍSANIE PRAVIDIEL
         private void VypisPravidla()
         {
             Console.WriteLine("\n=== AKO FUNGUJE HRA ===");
@@ -158,7 +150,7 @@ namespace com.example
             Console.WriteLine("Hru môžete kedykoľvek presunúť do grafického okna príkazom 'gui'.");
             Console.WriteLine("=======================\n");
             Console.WriteLine("Stlačte Enter pre pokračovanie...");
-            Console.ReadLine(); // Počká, kým si to používateľ prečíta
+            Console.ReadLine();
         }
 
         private void VypisHelp()

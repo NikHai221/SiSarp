@@ -10,3 +10,15 @@ C:\Users\NIko\Desktop\SkolDom\DonetCsharp\SiSarp\ChessCore\obj\Debug\net10.0\Che
 C:\Users\NIko\Desktop\SkolDom\DonetCsharp\SiSarp\ChessCore\obj\Debug\net10.0\refint\ChessCore.dll
 C:\Users\NIko\Desktop\SkolDom\DonetCsharp\SiSarp\ChessCore\obj\Debug\net10.0\ChessCore.pdb
 C:\Users\NIko\Desktop\SkolDom\DonetCsharp\SiSarp\ChessCore\obj\Debug\net10.0\ref\ChessCore.dll
+C:\Users\Arnold\Desktop\FRI\2rocnik\semester4\denetsisarp\semestrl\SiSarp\ChessCore\bin\Debug\net10.0\ChessCore.deps.json
+C:\Users\Arnold\Desktop\FRI\2rocnik\semester4\denetsisarp\semestrl\SiSarp\ChessCore\bin\Debug\net10.0\ChessCore.dll
+C:\Users\Arnold\Desktop\FRI\2rocnik\semester4\denetsisarp\semestrl\SiSarp\ChessCore\bin\Debug\net10.0\ChessCore.pdb
+C:\Users\Arnold\Desktop\FRI\2rocnik\semester4\denetsisarp\semestrl\SiSarp\ChessCore\obj\Debug\net10.0\ChessCore.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Arnold\Desktop\FRI\2rocnik\semester4\denetsisarp\semestrl\SiSarp\ChessCore\obj\Debug\net10.0\ChessCore.AssemblyInfoInputs.cache
+C:\Users\Arnold\Desktop\FRI\2rocnik\semester4\denetsisarp\semestrl\SiSarp\ChessCore\obj\Debug\net10.0\ChessCore.AssemblyInfo.cs
+C:\Users\Arnold\Desktop\FRI\2rocnik\semester4\denetsisarp\semestrl\SiSarp\ChessCore\obj\Debug\net10.0\ChessCore.csproj.CoreCompileInputs.cache
+C:\Users\Arnold\Desktop\FRI\2rocnik\semester4\denetsisarp\semestrl\SiSarp\ChessCore\obj\Debug\net10.0\ChessCore.sourcelink.json
+C:\Users\Arnold\Desktop\FRI\2rocnik\semester4\denetsisarp\semestrl\SiSarp\ChessCore\obj\Debug\net10.0\ChessCore.dll
+C:\Users\Arnold\Desktop\FRI\2rocnik\semester4\denetsisarp\semestrl\SiSarp\ChessCore\obj\Debug\net10.0\refint\ChessCore.dll
+C:\Users\Arnold\Desktop\FRI\2rocnik\semester4\denetsisarp\semestrl\SiSarp\ChessCore\obj\Debug\net10.0\ChessCore.pdb
+C:\Users\Arnold\Desktop\FRI\2rocnik\semester4\denetsisarp\semestrl\SiSarp\ChessCore\obj\Debug\net10.0\ref\ChessCore.dll
